@@ -1,65 +1,62 @@
-# Exercise 1: Shortest Paths
-The CSV file probabilities.csv includes the information for 11 players appearing in a match.
-In the file, a value for a player on the main diagonal is the probability of the player scoring a
-goal. Each of the values in a row other than the value on the main diagonal is the probability
-that a pass is successful from this player to the related player. For example, a value in row 1,
-column 2 is the probability of a pass being successful from player 1 to player 2. A zero value
-for a player on the main diagonal means that the player cannot shoot and there is no
-probability for scoring a goal. However, other zero values mean that there is no edge from a
-player to another player. Hence, in this exercise the ball is now at the given player, and the
-aim is to find the path that maximizes the probability of the given player to score a goal.
-A path length is the sum of the values on the edges of the path. In order to minimize the
-product rather than the sum, we take logarithms. When the edge values are replaced by the
-logarithms, the shortest path is the smallest product (Because log(a*b)=loga + logb).
-However, we want to maximize the joint probability rather than to minimize it. Thus, we
-multiply the edge values by -1. With the preprocessing of the edge values and using a
-shortest path algorithm, we maximize the product rather than minimize the sum.
+# Exercise 1 Shortest Path
+The CSV file probabilities.csv contains information for his 11 players in the game.
+In this file, the player's value on the main diagonal is the probability that the player will score.
+goal. Each value in a row other than those on the main diagonal is a probability
+A successful pass from that player to the relevant player. For example, the value in row 1,
+Column 2 is the probability of a successful pass from player 1 to player 2. null value
+A player on the main diagonal means that the player cannot shoot and there is no one
+probability of scoring a goal. But any other zero value means no edge from a.
+From one player to another. So in this exercise the ball is in the hands of the designated player and
+The goal is to find a way to maximize the probability of a particular player scoring a goal.
+Path length is the sum of the values at the ends of the path. to minimize it
+It's a product, not a sum. Take the logarithm. edge value
+Logarithmic, the shortest path is the smallest product (because log(a*b)=loga + logb). However, rather than minimizing joint probabilities, we should maximize them. So we
+Multiply the edge value by -1. edge value preprocessing and
+A shortest-path algorithm that maximizes the product instead of minimizing the sum.
 
-Two positional command-line arguments will be given to the program:
+Two positional command line arguments are passed to the program.
 
-1. Path of the probabilities file (e.g. data/probabilities.csv)
 
-2. A positive integer s for indicating the index of the player.
+1. Probability file path (e.g. data/probabilities.csv)
 
-You can assume both path and s are valid (Such file exists and 0 ≤ s ≤ 10).
-This program is expected to do the followings:
+2. A positive integer s specifying the player index.
 
-1. Creates a directed graph.
+We can assume that both path and s are valid (such a file exists and 0 ≤ s ≤ 10). This program is expected to:
 
-2. Reads the probabilities.csv file line by line and adds the probabilities to the graph.
+1. Create a directed graph.
 
-3. Displays the matrix given in the file.
+2. Read the probabilities.csv file line by line and add the probabilities to the graph.
 
-4. Preprocesses the edge values except for the self-edges in the graph by taking the
-logarithm 10 of an edge value and multiplying it by -1.
+3. Display the matrix specified in the file.
 
-5. Executes the Dijkstra’s shortest paths algorithm with the given player s as the source
-vertex using the preprocessed values.
+4. Preprocess the edge values, excluding unique edges of the graph.
+Log 10 of the edge value and multiply by -1. 5. Run Dijkstra's shortest path algorithm with the specified player as the source.
+Vertices using preprocessed values.
 
-6. Since all the players in a match cannot shoot, to find the path maximizing the
-goal-scoring probability for the given player, the program performs postprocessing for
-the shooters. It multiplies the calculated value for a shooter by the probability of that
-shooter scoring a goal. If the given player is a shooter, the probability of scoring a
-goal has already been given and there is no need for multiplication.
+5. Because not all players can find the pass that maximizes their shots in the game
+Probability of scoring for a given player, for which the program performs post-processing
+Archer. Multiply the shooter's calculated value by its probability
+A shooter who scores a goal. If a given player is a shooter, the probability of scoring a goal is
+Goals are already given, no need for multiplication.
 
-7. Displays the path that maximizes the probability of the given player to score a goal.
+6. Display the path that maximizes the probability of the specified player scoring the goal.
 
 # Exercise 2: Greedy Algorithms
 
-This exercise uses times rather than probabilities. The CSV file times.csv contains the
-information of the times for 11 players present in a match. The values of the main diagonal
-indicate the shooting times for the players. Each of the other values in a row is the time
-taken for the player to pass the ball to the respective player. As in Exercise 1, a zero value
-on the main diagonal indicates that the player cannot shoot, and other zero values
-demonstrate the ball is not passed and there is no edge from a player to another player. In
-this exercise, the ball is now at the given player and the player tries to score a goal as
-quickly as possible. Hence, find the path that gets the ball to the goal in the shortest time.
-The idea is that if the player holding the ball can shoot, the player shoots. Otherwise, the
-player gives a pass to whomever the player can pass in the shortest time. But, the player
-does not choose the players who have already held the ball. If there are more than one
-player with the shortest time, the player chooses the one with the smaller index.
-If there is no one to pass the ball, it means it is not possible to shoot anyway and the input is
-invalid. You can think this situation does not happen.
+This exercise uses time rather than probability. The CSV file times.csv contains
+Information about his 11 player times present in the game. main diagonal value
+Provide player shooting time. Each other value in the row is a time
+Players are taken to pass the ball to each player. As in Exercise 1, null values
+on the main diagonal indicates that the player cannot shoot, other zero values ​​are
+The ball is not passed, indicating no advantage from one player to another. of
+In this exercise the ball is at a designated player and the player tries to score like a goal
+as soon as possible. Find the path for the ball to reach the goal in the shortest time.
+The idea is that if the player in possession of the ball can shoot, the player shoots. Otherwise,
+A player gives a pass to whoever the player can pass in the shortest time. but the player
+Players already in possession of the ball are not selected. if there are multiple
+The player with the shortest time, the one with the lowest index, will be selected.
+If there is no one to pass the ball, it means that you can't shoot anyway, and the input is
+invalid. You might think that such a situation would never happen.
 
-The program displays the matrix given in the file and the path that gets the ball to the goal in
-the shortest time.
+The program will display the matrix specified in the file and the path that will take the ball to the goal
+shortest time.
